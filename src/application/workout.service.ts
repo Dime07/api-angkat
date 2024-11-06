@@ -1,7 +1,8 @@
 import { WorkoutRepo } from "../infrastructure/database/workout.repo";
 import { inject, injectable } from "inversify";
 import "reflect-metadata";
-import { TWorkoutPayload, TYPES } from "../interface/types";
+import { TYPES } from "../interface/types";
+import { TWorkoutPayload } from "../interface/workout";
 
 @injectable()
 export class WorkoutService {

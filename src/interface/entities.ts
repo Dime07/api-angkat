@@ -1,4 +1,4 @@
-import { TWorkoutPayload } from "./types";
+import { TWorkoutPayload } from "./workout";
 
 export interface IWorkout {
   getAll(): Promise<TWorkoutPayload[]>;

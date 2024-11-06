@@ -1,8 +1,8 @@
 import { IWorkout } from "../../interface/entities";
+import { TWorkoutPayload } from "../../interface/workout";
 import { prisma } from "../../utils/prisma";
 import { injectable } from "inversify";
 import "reflect-metadata";
-import { TWorkoutPayload } from "../../interface/types";
 
 @injectable()
 export class WorkoutRepo implements IWorkout {
