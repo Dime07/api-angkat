@@ -1,4 +1,4 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 import { workoutService } from "./infrastructure/ioc/container";
 
 const app = new Elysia({ prefix: "/api/v1" })
@@ -14,6 +14,25 @@ const app = new Elysia({ prefix: "/api/v1" })
         const workout = await workoutService.getOneById(Number(id));
         return workout;
       })
+      .post(
+        "/",
+        async (req) => {
+          const workout = await workoutService.createOne(req.body);
+          return workout;
+        },
+        {
+          body: t.Object({
+            name: t.String(),
+            duration: t.Number(),
+            exercises: t.Array(
+              t.Object({
+                name: t.String(),
+                duration: t.Number(),
+              })
+            ),
+          }),
+        }
+      )
   )
   .listen(3000);
 

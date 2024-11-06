@@ -1,7 +1,7 @@
 import { WorkoutRepo } from "../infrastructure/database/workout.repo";
 import { inject, injectable } from "inversify";
 import "reflect-metadata";
-import { TYPES } from "../interface/types";
+import { TWorkoutPayload, TYPES } from "../interface/types";
 
 @injectable()
 export class WorkoutService {
@@ -17,5 +17,9 @@ export class WorkoutService {
 
   getOneById(id: number) {
     return this.workoutRepo.getOneById(id);
+  }
+
+  createOne(workout: TWorkoutPayload) {
+    return this.workoutRepo.createOne(workout);
   }
 }

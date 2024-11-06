@@ -1,6 +1,7 @@
-import { Workout } from "@prisma/client";
+import { TWorkoutPayload } from "./types";
 
 export interface IWorkout {
-  getAll(): Promise<Workout[]>;
-  getOneById(id: number): Promise<Workout | null>;
+  getAll(): Promise<TWorkoutPayload[]>;
+  getOneById(id: number): Promise<TWorkoutPayload | null>;
+  createOne(workout: TWorkoutPayload): Promise<TWorkoutPayload>;
 }
