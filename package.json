@@ -7,6 +7,8 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
     "@prisma/client": "^5.22.0",
     "elysia": "latest",
     "inversify": "^6.0.3",
