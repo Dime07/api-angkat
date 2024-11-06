@@ -30,4 +30,28 @@ export class WorkoutRepo implements IWorkout {
       include: { exercises: true },
     });
   }
+
+  async deleteOneById(id: number): Promise<boolean> {
+    const workout = await prisma.workout.delete({
+      where: { id },
+    });
+
+    return !!workout;
+  }
+
+  async updateOneById(
+    id: number,
+    workout: TWorkoutPayload
+  ): Promise<TWorkoutPayload> {
+    return await prisma.workout.update({
+      where: { id },
+      data: {
+        ...workout,
+        exercises: {
+          create: workout.exercises,
+        },
+      },
+      include: { exercises: true },
+    });
+  }
 }

@@ -27,7 +27,35 @@ const app = new Elysia({ prefix: "/api/v1" })
             exercises: t.Array(
               t.Object({
                 name: t.String(),
-                duration: t.Number(),
+                reps: t.Number(),
+              })
+            ),
+          }),
+        }
+      )
+      .delete("/:id", async (req) => {
+        const { id } = req.params;
+        const workout = await workoutService.deleteOneById(Number(id));
+        return workout;
+      })
+      .put(
+        "/:id",
+        async (req) => {
+          const { id } = req.params;
+          const workout = await workoutService.updateOneById(
+            Number(id),
+            req.body
+          );
+          return workout;
+        },
+        {
+          body: t.Object({
+            name: t.String(),
+            duration: t.Number(),
+            exercises: t.Array(
+              t.Object({
+                name: t.String(),
+                reps: t.Number(),
               })
             ),
           }),

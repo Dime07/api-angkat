@@ -22,4 +22,12 @@ export class WorkoutService {
   createOne(workout: TWorkoutPayload) {
     return this.workoutRepo.createOne(workout);
   }
+
+  deleteOneById(id: number) {
+    return this.workoutRepo.deleteOneById(id);
+  }
+
+  updateOneById(id: number, workout: TWorkoutPayload) {
+    return this.workoutRepo.updateOneById(id, workout);
+  }
 }

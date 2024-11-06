@@ -11,7 +11,7 @@ export type TWorkoutPayload = Prisma.WorkoutGetPayload<{
     name: true;
     exercises: {
       select: {
-        duration: true;
+        reps: true;
         name: true;
       };
     };
