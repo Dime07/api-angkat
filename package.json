@@ -12,6 +12,7 @@
     "@prisma/client": "^5.22.0",
     "elysia": "latest",
     "inversify": "^6.0.3",
+    "prisma": "^5.22.0",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
