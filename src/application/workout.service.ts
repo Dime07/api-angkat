@@ -5,13 +5,17 @@ import { TYPES } from "../interface/types";
 
 @injectable()
 export class WorkoutService {
-    private workoutRepo: WorkoutRepo;
+  private workoutRepo: WorkoutRepo;
 
-    constructor(@inject(TYPES.WorkoutRepo) workoutRepo: WorkoutRepo) {
-        this.workoutRepo = workoutRepo;
-    }
+  constructor(@inject(TYPES.WorkoutRepo) workoutRepo: WorkoutRepo) {
+    this.workoutRepo = workoutRepo;
+  }
 
-    getAll() {
-        return this.workoutRepo.getAll();
-    }
+  getAll() {
+    return this.workoutRepo.getAll();
+  }
+
+  getOneById(id: number) {
+    return this.workoutRepo.getOneById(id);
+  }
 }
