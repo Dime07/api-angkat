@@ -39,6 +39,7 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
             t.Object({
               name: t.String(),
               reps: t.Number(),
+              volume: t.Number(),
             })
           ),
         }),
@@ -74,6 +75,7 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
             t.Object({
               name: t.String(),
               reps: t.Number(),
+              volume: t.Number(),
             })
           ),
         }),

@@ -8,6 +8,7 @@ export type TWorkoutPayload = Prisma.WorkoutGetPayload<{
       select: {
         reps: true;
         name: true;
+        volume: true;
       };
     };
   };
