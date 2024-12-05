@@ -21,7 +21,7 @@ model Exercise {
   name      String
   reps  Float
   volume Float
-  workout   Workout @relation(fields: [workoutId], references: [id])
+  workout   Workout @relation(fields: [workoutId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   workoutId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

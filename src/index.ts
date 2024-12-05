@@ -17,6 +17,28 @@ const app = new Elysia()
       },
     })
   )
+  .onError(({ error, code }) => {
+    if (code === "VALIDATION") {
+      const mappedErrorMessage = error.all.map((err) => err.summary);
+      return {
+        success: false,
+        message: mappedErrorMessage,
+        data: {},
+      };
+    }
+
+    return {
+      success: false,
+      message: error.message,
+    };
+  })
+  .onAfterHandle(({ response }) => {
+    return {
+      success: true,
+      message: "Request has been successfully handled",
+      data: response,
+    };
+  })
   // workout service
   .use(workoutRouter)
   .listen(3000);
