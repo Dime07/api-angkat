@@ -5,7 +5,6 @@ import { cors } from "@elysiajs/cors";
 import { authRouter } from "./presentation/router/auth-router";
 
 const app = new Elysia()
-
   .use(cors())
   .use(
     swagger({
@@ -34,9 +33,9 @@ const app = new Elysia()
       message: error.message,
     };
   })
-  // workout service
+  // workout routes
   .use(workoutRouter)
-  // auth service
+  // auth routes
   .use(authRouter)
   .listen(3002);
 
