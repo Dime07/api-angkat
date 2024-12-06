@@ -2,8 +2,10 @@ import { Elysia } from "elysia";
 import { workoutRouter } from "./presentation/router/workout-router";
 import { swagger } from "@elysiajs/swagger";
 import { cors } from "@elysiajs/cors";
+import { authRouter } from "./presentation/router/auth-router";
 
 const app = new Elysia()
+
   .use(cors())
   .use(
     swagger({
@@ -11,7 +13,7 @@ const app = new Elysia()
       autoDarkMode: true,
       documentation: {
         info: {
-          title: "API Angkat - ElysiaJS Demo",
+          title: "API Angkat",
           version: "1.0.0",
         },
       },
@@ -32,15 +34,10 @@ const app = new Elysia()
       message: error.message,
     };
   })
-  .onAfterHandle(({ response }) => {
-    return {
-      success: true,
-      message: "Request has been successfully handled",
-      data: response,
-    };
-  })
   // workout service
   .use(workoutRouter)
+  // auth service
+  .use(authRouter)
   .listen(3002);
 
 console.log(

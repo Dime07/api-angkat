@@ -3,6 +3,13 @@ import { workoutService } from "../../infrastructure/ioc/container";
 
 export const workoutRouter = new Elysia().group("/workout", (app) =>
   app
+    .onAfterHandle(({ response }) => {
+      return {
+        success: true,
+        message: "Request has been successfully handled",
+        data: response,
+      };
+    })
     .get(
       "/",
       async () => {
