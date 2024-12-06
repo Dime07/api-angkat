@@ -12,17 +12,18 @@ export class WorkoutRepo implements IWorkout {
     });
   }
 
-  async getOneById(id: number): Promise<TWorkoutPayload | null> {
+  async getOneById(id: number) {
     return await prisma.workout.findUnique({
       where: { id },
       include: { exercises: true },
     });
   }
 
-  async createOne(workout: TWorkoutPayload): Promise<TWorkoutPayload> {
+  async createOne(workout: TWorkoutPayload, userId: number) {
     return await prisma.workout.create({
       data: {
         ...workout,
+        userId,
         exercises: {
           create: workout.exercises,
         },
@@ -31,7 +32,7 @@ export class WorkoutRepo implements IWorkout {
     });
   }
 
-  async deleteOneById(id: number): Promise<boolean> {
+  async deleteOneById(id: number) {
     const workout = await prisma.workout.delete({
       where: { id },
     });
@@ -39,10 +40,7 @@ export class WorkoutRepo implements IWorkout {
     return !!workout;
   }
 
-  async updateOneById(
-    id: number,
-    workout: TWorkoutPayload
-  ): Promise<TWorkoutPayload> {
+  async updateOneById(id: number, workout: TWorkoutPayload) {
     return await prisma.workout.update({
       where: { id },
       data: {

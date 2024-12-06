@@ -31,6 +31,11 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
         jwtPayload.email.toString()
       );
 
+      if (!user) {
+        set.status = 401;
+        throw new Error("User not found");
+      }
+
       return {
         user,
       };
@@ -65,8 +70,8 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
     )
     .post(
       "/",
-      async (req) => {
-        const workout = await workoutService.createOne(req.body);
+      async ({ body, user }) => {
+        const workout = await workoutService.createOne(body, user.id);
         return workout;
       },
       {

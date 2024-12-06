@@ -20,8 +20,8 @@ export class WorkoutService {
     return this.workoutRepo.getOneById(id);
   }
 
-  createOne(workout: TWorkoutPayload) {
-    return this.workoutRepo.createOne(workout);
+  createOne(workout: TWorkoutPayload, userId: number) {
+    return this.workoutRepo.createOne(workout, userId);
   }
 
   deleteOneById(id: number) {
