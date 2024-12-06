@@ -41,7 +41,7 @@ const app = new Elysia()
   })
   // workout service
   .use(workoutRouter)
-  .listen(3000);
+  .listen(3002);
 
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`

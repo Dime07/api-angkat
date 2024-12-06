@@ -73,6 +73,7 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
           duration: t.Number(),
           exercises: t.Array(
             t.Object({
+              id: t.Number(),
               name: t.String(),
               reps: t.Number(),
               volume: t.Number(),

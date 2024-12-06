@@ -48,6 +48,7 @@ export class WorkoutRepo implements IWorkout {
       data: {
         ...workout,
         exercises: {
+          deleteMany: {},
           create: workout.exercises,
         },
       },
