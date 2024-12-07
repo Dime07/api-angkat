@@ -39,9 +39,16 @@ export const authRouter = new Elysia().group("/auth", (app) =>
     )
     .post(
       "/register",
-      async ({ body }) => {
+      async ({ body, jwt }) => {
         const { email, password, name } = body;
-        return await authService.register(email, password, name);
+        const user = await authService.register(email, password, name);
+
+        const token = await jwt.sign({
+          sub: user.id.toString(),
+          email: user.email,
+        });
+
+        return { ...user, token };
       },
       {
         body: t.Object({
