@@ -12,6 +12,13 @@ export class WorkoutRepo implements IWorkout {
     });
   }
 
+  async getAllByUserId(userId: number): Promise<TWorkoutPayload[]> {
+    return await prisma.workout.findMany({
+      where: { userId },
+      include: { exercises: true },
+    });
+  }
+
   async getOneById(id: number) {
     return await prisma.workout.findUnique({
       where: { id },

@@ -27,7 +27,6 @@ export const authRouter = new Elysia().group("/auth", (app) =>
           sub: user.id.toString(),
           email: user.email,
         });
-        console.log(token);
 
         return { ...user, token };
       },

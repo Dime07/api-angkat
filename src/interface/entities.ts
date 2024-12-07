@@ -3,6 +3,7 @@ import { TWorkoutPayload } from "./workout";
 
 export interface IWorkout {
   getAll(): Promise<TWorkoutPayload[]>;
+  getAllByUserId(userId: number): Promise<TWorkoutPayload[]>;
   getOneById(id: number): Promise<TWorkoutPayload | null>;
   createOne(workout: TWorkoutPayload, userId: number): Promise<TWorkoutPayload>;
   deleteOneById(id: number): Promise<boolean>;

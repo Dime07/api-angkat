@@ -49,8 +49,8 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
     })
     .get(
       "/",
-      async () => {
-        const workout = await workoutService.getAll();
+      async ({ user }) => {
+        const workout = await workoutService.getAll(user.id);
         return workout;
       },
       {

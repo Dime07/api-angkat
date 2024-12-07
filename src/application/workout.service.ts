@@ -12,7 +12,11 @@ export class WorkoutService {
     this.workoutRepo = workoutRepo;
   }
 
-  getAll() {
+  getAll(userId?: number) {
+    if (userId) {
+      return this.workoutRepo.getAllByUserId(userId);
+    }
+
     return this.workoutRepo.getAll();
   }
 
