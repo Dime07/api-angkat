@@ -39,9 +39,9 @@ export class WorkoutRepo implements IWorkout {
     });
   }
 
-  async deleteOneById(id: number) {
+  async deleteOneById(id: number, userId: number) {
     const workout = await prisma.workout.delete({
-      where: { id },
+      where: { id, userId },
     });
 
     return !!workout;

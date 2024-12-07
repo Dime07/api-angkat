@@ -6,7 +6,7 @@ export interface IWorkout {
   getAllByUserId(userId: number): Promise<TWorkoutPayload[]>;
   getOneById(id: number): Promise<TWorkoutPayload | null>;
   createOne(workout: TWorkoutPayload, userId: number): Promise<TWorkoutPayload>;
-  deleteOneById(id: number): Promise<boolean>;
+  deleteOneById(id: number, userId: number): Promise<boolean>;
   updateOneById(id: number, workout: TWorkoutPayload): Promise<TWorkoutPayload>;
 }
 

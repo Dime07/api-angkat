@@ -47,16 +47,10 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
         data: response,
       };
     })
-    .get(
-      "/",
-      async ({ user }) => {
-        const workout = await workoutService.getAll(user.id);
-        return workout;
-      },
-      {
-        tags: ["workout"],
-      }
-    )
+    .get("/", async ({ user }) => {
+      const workout = await workoutService.getAllByUserId(user.id);
+      return workout;
+    })
     .get(
       "/:id",
       async (req) => {
@@ -91,9 +85,9 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
     )
     .delete(
       "/:id",
-      async (req) => {
-        const { id } = req.params;
-        const workout = await workoutService.deleteOneById(Number(id));
+      async ({ params, user }) => {
+        const { id } = params;
+        const workout = await workoutService.deleteOneById(Number(id), user.id);
         return workout;
       },
       {

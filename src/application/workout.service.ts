@@ -12,12 +12,8 @@ export class WorkoutService {
     this.workoutRepo = workoutRepo;
   }
 
-  getAll(userId?: number) {
-    if (userId) {
-      return this.workoutRepo.getAllByUserId(userId);
-    }
-
-    return this.workoutRepo.getAll();
+  getAllByUserId(userId: number) {
+    return this.workoutRepo.getAllByUserId(userId);
   }
 
   getOneById(id: number) {
@@ -28,8 +24,8 @@ export class WorkoutService {
     return this.workoutRepo.createOne(workout, userId);
   }
 
-  deleteOneById(id: number) {
-    return this.workoutRepo.deleteOneById(id);
+  deleteOneById(id: number, userId: number) {
+    return this.workoutRepo.deleteOneById(id, userId);
   }
 
   updateOneById(id: number, workout: TWorkoutPayload) {
