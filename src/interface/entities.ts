@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { Like, User } from "@prisma/client";
 import { TWorkoutPayload } from "./workout";
 
 export interface IWorkout {
@@ -17,4 +17,10 @@ export interface IUser {
     name: string
   ): Promise<Omit<User, "password" | "createdAt" | "updatedAt">>;
   getUserByEmail(email: string): Promise<User | null>;
+}
+
+export interface ILike {
+  likeWorkout(workoutId: number, userId: number): Promise<Like>;
+  unlikeWorkout(workoutId: number, userId: number): Promise<boolean>;
+  // isLiked(workoutId: number, userId: number): Promise<boolean>;
 }

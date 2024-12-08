@@ -37,6 +37,7 @@ const app = new Elysia()
   .use(workoutRouter)
   // auth routes
   .use(authRouter)
+  // like routes
   .listen(3002);
 
 console.log(

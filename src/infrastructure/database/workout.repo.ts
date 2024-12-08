@@ -8,14 +8,14 @@ import "reflect-metadata";
 export class WorkoutRepo implements IWorkout {
   async getAll(): Promise<TWorkoutPayload[]> {
     return await prisma.workout.findMany({
-      include: { exercises: true },
+      include: { exercises: true, likes: true },
     });
   }
 
   async getAllByUserId(userId: number): Promise<TWorkoutPayload[]> {
     return await prisma.workout.findMany({
       where: { userId },
-      include: { exercises: true },
+      include: { exercises: true, likes: true },
     });
   }
 

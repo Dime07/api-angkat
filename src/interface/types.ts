@@ -4,4 +4,6 @@ export const TYPES = {
   UserRepo: Symbol.for("UserRepo"),
   UserService: Symbol.for("UserService"),
   AuthService: Symbol.for("AuthService"),
+  LikeRepo: Symbol.for("LikeRepo"),
+  LikeService: Symbol.for("LikeService"),
 };
