@@ -1,6 +1,7 @@
 import { inject, injectable } from "inversify";
 import { UserRepo } from "../infrastructure/database/user.repo";
 import { TYPES } from "../interface/types";
+import jwt from "jsonwebtoken";
 
 @injectable()
 export class AuthService {
@@ -27,7 +28,14 @@ export class AuthService {
       throw new Error("Password is incorrect");
     }
 
-    return user;
+    const jwtToken = await jwt.sign(
+      {
+        email,
+      },
+      `${process.env.JWT_SECRET}`
+    );
+
+    return { ...user, token: jwtToken };
   }
 
   async register(email: string, password: string, name: string) {
@@ -39,6 +47,15 @@ export class AuthService {
 
     const hashedPassword = await Bun.password.hash(password, "bcrypt");
 
-    return await this.userRepo.createUser(email, hashedPassword, name);
+    const jwtToken = await jwt.sign(
+      {
+        email,
+      },
+      `${process.env.JWT_SECRET}`
+    );
+
+    const newUser = await this.userRepo.createUser(email, hashedPassword, name);
+
+    return { ...newUser, token: jwtToken };
   }
 }

@@ -1,15 +1,8 @@
 import Elysia, { t } from "elysia";
 import { authService } from "../../infrastructure/ioc/container";
-import jwt from "@elysiajs/jwt";
 
 export const authRouter = new Elysia().group("/auth", (app) =>
   app
-    .use(
-      jwt({
-        name: "jwt",
-        secret: "angkatsecret",
-      })
-    )
     .onAfterHandle(({ response }) => {
       return {
         success: true,
@@ -19,16 +12,11 @@ export const authRouter = new Elysia().group("/auth", (app) =>
     })
     .post(
       "/login",
-      async ({ body, jwt }) => {
+      async ({ body }) => {
         const { email, password } = body;
         const user = await authService.login(email, password);
 
-        const token = await jwt.sign({
-          sub: user.id.toString(),
-          email: user.email,
-        });
-
-        return { ...user, token };
+        return user;
       },
       {
         body: t.Object({
@@ -39,16 +27,11 @@ export const authRouter = new Elysia().group("/auth", (app) =>
     )
     .post(
       "/register",
-      async ({ body, jwt }) => {
+      async ({ body }) => {
         const { email, password, name } = body;
         const user = await authService.register(email, password, name);
 
-        const token = await jwt.sign({
-          sub: user.id.toString(),
-          email: user.email,
-        });
-
-        return { ...user, token };
+        return user;
       },
       {
         body: t.Object({

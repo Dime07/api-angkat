@@ -4,7 +4,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prismaMigrate:dev": "dotenv -e .env.local prisma migrate dev",
+    "prismaStudio:dev": "dotenv -e .env.local prisma studio"
   },
   "dependencies": {
     "@commitlint/cli": "^19.5.0",
@@ -14,6 +16,7 @@
     "@elysiajs/swagger": "^1.1.5",
     "@prisma/client": "^5.22.0",
     "@types/jsonwebtoken": "^9.0.7",
+    "dotenv-cli": "^7.4.4",
     "elysia": "latest",
     "inversify": "^6.0.3",
     "jsonwebtoken": "^9.0.2",
