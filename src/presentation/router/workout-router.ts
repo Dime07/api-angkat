@@ -12,14 +12,26 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
         data: response,
       };
     })
-    .get("/", async () => {
-      const workout = await workoutService.getAll();
-      return workout;
-    })
-    .get("/me", async ({ user }) => {
-      const workout = await workoutService.getAllByUserId(user.id);
-      return workout;
-    })
+    .get(
+      "/",
+      async () => {
+        const workout = await workoutService.getAll();
+        return workout;
+      },
+      {
+        tags: ["workout"],
+      }
+    )
+    .get(
+      "/me",
+      async ({ user }) => {
+        const workout = await workoutService.getAllByUserId(user.id);
+        return workout;
+      },
+      {
+        tags: ["workout"],
+      }
+    )
     .get(
       "/:id",
       async (req) => {
@@ -89,14 +101,26 @@ export const workoutRouter = new Elysia().group("/workout", (app) =>
         }),
       }
     )
-    .post("/:id/like", async ({ params, user }) => {
-      const { id } = params;
-      const workout = await workoutService.likeWorkout(Number(id), user.id);
-      return workout;
-    })
-    .post("/:id/unlike", async ({ params, user }) => {
-      const { id } = params;
-      const workout = await workoutService.unlikeWorkout(Number(id), user.id);
-      return workout;
-    })
+    .post(
+      "/:id/like",
+      async ({ params, user }) => {
+        const { id } = params;
+        const workout = await workoutService.likeWorkout(Number(id), user.id);
+        return workout;
+      },
+      {
+        tags: ["workout"],
+      }
+    )
+    .post(
+      "/:id/unlike",
+      async ({ params, user }) => {
+        const { id } = params;
+        const workout = await workoutService.unlikeWorkout(Number(id), user.id);
+        return workout;
+      },
+      {
+        tags: ["workout"],
+      }
+    )
 );

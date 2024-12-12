@@ -19,6 +19,7 @@ export const authRouter = new Elysia().group("/auth", (app) =>
         return user;
       },
       {
+        tags: ["auth"],
         body: t.Object({
           email: t.String(),
           password: t.String(),
@@ -34,6 +35,7 @@ export const authRouter = new Elysia().group("/auth", (app) =>
         return user;
       },
       {
+        tags: ["auth"],
         body: t.Object({
           email: t.String(),
           password: t.String(),
