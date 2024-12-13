@@ -1,15 +1,22 @@
-# Elysia with Bun runtime
+# API Angkat 💪
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
+![Angkat Logo](https://github.com/user-attachments/assets/95978e5c-8ed8-4d21-a991-e1f86f96e773)
 
-## Development
-To start the development server run:
-```bash
-bun run dev
-```
+This API provides users to track workouts and connect with a supportive community.
 
-Open http://localhost:3000/ with your browser to see the result.
+Check out the Angkat website: [Angkat Website](https://angkat.dime.my.id)
+
+
+## Features
+
+- **Track Your Workouts:** Log your exercises, reps, and more to stay on top of your progress. ️‍📈
+- **Community Posts:** Share your latest workouts and get motivated by the Angkat community. 😆
+- **(More features coming soon! 🫣)**
+
+
+## Tech Stack
+
+**Client:** Next js, Tailwind CSS
+
+**Server:** Bun, elysia js, postgres
+
